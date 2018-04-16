@@ -1,3 +1,5 @@
+Este repositório tem como base o repositorio https://github.com/asc-isep-ipp-pt/PROGS-RCOMP 
+O objetivo da cópia é facilitar a aprendizagem e manipulação do projeto.
 
 C and JAVA versions of the sample programs for RCOMP (REDES DE COMPUTADORES) unit
 
