@@ -9,7 +9,7 @@
 #include <netdb.h>
 
 #define BUF_SIZE 300
-#define SERVER_PORT "9999"
+#define SERVER_PORT "2020"
 
 int main(void) {
 	struct sockaddr_storage client;

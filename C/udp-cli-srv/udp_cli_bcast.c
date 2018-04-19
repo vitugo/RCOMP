@@ -10,7 +10,7 @@
 #include <netdb.h>
 
 #define BUF_SIZE 300
-#define SERVER_PORT "9999"
+#define SERVER_PORT "2020"
 #define BCAST_ADDRESS "255.255.255.255"
 
 // read a string from stdin protecting buffer overflow
@@ -53,16 +53,28 @@ int main(int argc, char **argv) {
 	perror("Bind failed");close(sock);freeaddrinfo(list);exit(1);}
 
 	freeaddrinfo(list);
-
+	struct sockaddr firstAddr = NULL;
 	while(1) {
 		printf("Request sentence to send (\"exit\" to quit): ");
         	GETS(linha,BUF_SIZE);
 		if(!strcmp(linha,"exit")) break;
+
 		sendto(sock,linha,strlen(linha),0,(struct sockaddr *)&serverAddr,serverAddrLen);
 		res=recvfrom(sock,linha,BUF_SIZE,0,(struct sockaddr *)&serverAddr,&serverAddrLen);
-        	linha[res]=0; /* NULL terminate the string */
-		printf("Received reply: %s\n",linha);
-        	}
+		
+		if(firstAddr==NULL){
+			firstAddr = serverAddr;
+			linha[res]=0; /* NULL terminate the string */
+			printf("Received reply: %s\n",linha);
+		} else {
+			if(firstAddr == serverAddr){
+				linha[res]=0; /* NULL terminate the string */
+				printf("Received reply: %s\n",linha);
+			}
+		}
+		
+        	
+    }
 	close(sock);
 	exit(0);
 	}

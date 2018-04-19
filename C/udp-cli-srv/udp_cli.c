@@ -10,7 +10,7 @@
 #include <netdb.h>
 
 #define BUF_SIZE 300
-#define SERVER_PORT "9999"
+#define SERVER_PORT "2020"
 
 // read a string from stdin protecting buffer overflow
 #define GETS(B,S) {fgets(B,S-2,stdin);B[strlen(B)-1]=0;}
